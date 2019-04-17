@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "InvoiceList";
+    Layout = "~/Areas/Admin/Views/Shared/Partial/AdminLayoutPage.cshtml";
+}
+
+@model List<InvoicePayment.Areas.Admin.Models.DTO.InvoiceDTO>
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="/Admin/Home/AdminHomeIndex"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="/Admin/Invoice/AddInvoice">Add Invoice</a></li>
+        <li class="active">Invoice List</li>
+    </ol>
+</section>
+<br />
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Invoices</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Invoice Name</th>
+                                <th>Invoice Date</th>
+                                <th>App User</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.InvoiceName</td>
+                                <td>@item.InvoiceDate</td>
+                                <td>@item.AppUserID</td>
+
+                                <td><a href="/Admin/Invoice/UpdateInvoice/@item.ID" type="button" class="btn btn-block btn-warning">Update</a></td>
+                                <td><a href="/Admin/Invoice/DeleteInvoice/@item.ID" type="button" class="btn btn-block btn-danger">Delete</a></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>$(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })</script>
+
+

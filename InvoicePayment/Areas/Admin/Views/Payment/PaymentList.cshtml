@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "PaymentList";
+    Layout = "~/Areas/Admin/Views/Shared/Partial/AdminLayoutPage.cshtml";
+}
+
+@model List<InvoicePayment.Areas.Admin.Models.DTO.PaymentDTO>
+<section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="/Admin/Home/AdminHomeIndex"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="/Admin/Payment/AddPayment">Add Payment</a></li>
+        <li class="active">Payment List</li>
+    </ol>
+</section>
+<br />
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">List of Payments</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Invoice Type</th>
+                                <th>Identification Number</th>
+                                <th>Invoice Number</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Invoice Amount</th>
+                                <th>App User</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@item.InvoiceType</td>
+                                <td>@item.IdentificationNumber</td>
+                                <td>@item.InvoiceNumber</td>
+                                <td>@item.FirstName</td>
+                                <td>@item.LastName</td>
+                                <td>@item.InvoiceAmount</td>
+                                <td>@item.AppUserID</td>
+
+                                <td><a href="/Admin/Payment/UpdatePayment/@item.ID" type="button" class="btn btn-block btn-warning">Update</a></td>
+                                <td><a href="/Admin/Payment/DeletePayment/@item.ID" type="button" class="btn btn-block btn-danger">Delete</a></td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+$(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })</script>
+
